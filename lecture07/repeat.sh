@@ -26,7 +26,7 @@ shout() {
 
 # Parse Command Line Arguments
 
-while [ $# -gt 1 ]; do
+while [ $# -gt 0 ]; do
     case $1 in
 	-n) N=$2; shift ;;		    # Discuss: double shift
 	-s) SHOUT=1 ;;			    # Discuss: flags
