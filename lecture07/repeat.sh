@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Gloabls
+# Globals
 
 N=1
 SHOUT=0
