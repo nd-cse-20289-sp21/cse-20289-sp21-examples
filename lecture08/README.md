@@ -40,26 +40,25 @@ Three volunteers to role-play and demonstrate a pipeline.
 
 # Regular Expressions: Syntax
 
+        $ echo "Tanner" | grep -E '.*'                # Match all letters
 
-        $ echo "Molly" | grep -E '.*'                 # Match all letters
+        $ echo "Tanner" | grep -E 'n*'                # Match zero or more L's
 
-	$ echo "Molly" | grep -E 'l*'                 # Match zero or more L's
+        $ echo "Greta"  | grep -E 'e?'                # Match zero or one E's
 
-	$ echo "Yeon"  | grep -E 'o?'                 # Match zero or one O's
+        $ echo "Greeta" | grep -E 'e{2}'              # Match exactly 2 E's
 
-	$ echo "Yeoon" | grep -E 'o{2}'               # Match exactly 2 O's
+        $ echo "Greeta" | grep -E '[ea]*'             # Match all E's or A's
 
-	$ echo "Yeoon" | grep -E '[eo]*'              # Match all O's or E's
+        $ echo "Greeta" | grep -E '[ea]+'             # Match one or more of either E or A
 
-	$ echo "Yeoon" | grep -E '[on]+'              # Match one or more of either O or N
+        $ echo "Greeta" | grep -E '[^ea]+'            # Match everything but E or A
 
-	$ echo "Yeoon" | grep -E '[^on]+'             # Match everything but O or N
+        $ echo "Greeta" | grep -E '^G'                # Match start
 
-	$ echo "Yeoon" | grep -E '^Y'                 # Match start 
+        $ echo "Greeta" | grep -E 'a$'                # Match end
 
-	$ echo "Yeoon" | grep -E 'n$'                 # Match end
-
-	$ echo "Yeono" | grep -E '(o).*\1'            # Match with group references
+        $ echo "Grata" | grep -E '(a).*\1'            # Match with group references
 
 # Regular Expressions: Examples
 
@@ -91,13 +90,13 @@ Three volunteers to role-play and demonstrate a pipeline.
         $ curl -sL https://yld.me/d51B | grep -Eo '[[:alnum:]]+@[[:alnum:]\.]+' | sort
 
 3. Extract all the "Assistant" positions
-    
+
         $ curl -sL "http://yld.me/aBG"| grep -Eo '[^>]*+Assistant[^<]*' | sort
 
 # Activity: CSE Curriculum
 
 1. How many MATH vs PHYS vs CSE courses?
-	
+
         $ curl -sL https://yld.me/djNR | grep -Eo '(MATH|PHYS|CSE)' | sort | uniq -c
 
 2. How many credits per semester?
@@ -124,6 +123,6 @@ Three volunteers to role-play and demonstrate a pipeline.
 
         $ curl -sL https://yld.me/djNR  
 		| sed -E 's/<(br|p)>/\n/g' 
-		| grep -v meta 
-		| sed -En 's/([^>]+ Elective).*credits.*/\1/p'  
+		| grep -v meta
+		| sed -En 's/([^>]+ Elective).*credits.*/\1/p' 
 		| sort | uniq -c
