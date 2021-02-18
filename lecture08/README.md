@@ -98,31 +98,31 @@ Three volunteers to role-play and demonstrate a pipeline.
 
 1. How many MATH vs PHYS vs CSE courses?
 	
-	$ curl -sL https://yld.me/djNR | grep -Eo '(MATH|PHYS|CSE)' | sort | uniq -c
+        $ curl -sL https://yld.me/djNR | grep -Eo '(MATH|PHYS|CSE)' | sort | uniq -c
 
 2. How many credits per semester?
 
-	$ curl -sL https://yld.me/djNR 
+        $ curl -sL https://yld.me/djNR 
 		| sed -En 's/.*TOTAL ([0-9]{2}|[0-9]{2}\.[0-9]) Credits.*/\1/p' 
 		| sort | uniq -c
 
 3. How many sophomore CSE courses?
 
-	$ curl -sL https://yld.me/djNR | grep -Eo 'CSE 2[0-9]{4}' | sort
+        $ curl -sL https://yld.me/djNR | grep -Eo 'CSE 2[0-9]{4}' | sort
 
-	$ curl -sL https://yld.me/djNR 
+        $ curl -sL https://yld.me/djNR 
 		| sed 's/<br>/\n/g' | sed -En 's/.*(CSE 2[0-9]{4}).*/\1/p' | sort
 
 4. How many sophomore CSE credits?
 
-	$ curl -sL https://yld.me/djNR  
+        $ curl -sL https://yld.me/djNR  
 		| sed 's/<br>/\n/g' 
 		| sed -En 's/.*(CSE 2[0-9]{4}).*([0-9]) credits.*/\2/p'
 		| awk '{ sum += $1 } END { print sum }'
 
 5. How many different types of electives?
 
-	$ curl -sL https://yld.me/djNR  
+        $ curl -sL https://yld.me/djNR  
 		| sed -E 's/<(br|p)>/\n/g' 
 		| grep -v meta 
 		| sed -En 's/([^>]+ Elective).*credits.*/\1/p'  
