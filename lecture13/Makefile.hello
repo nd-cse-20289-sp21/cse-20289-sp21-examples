@@ -51,4 +51,4 @@ greet.dynamic:	main.o libgreet.so
 	gcc -L. -o greet.dynamic main.o -lgreet
 
 greet.static:	main.o libgreet.a
-	gcc -static -o greet.static main.o -lgreet
+	gcc -L. -static -o greet.static main.o -lgreet
