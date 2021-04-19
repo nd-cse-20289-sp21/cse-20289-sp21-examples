@@ -131,8 +131,6 @@ int main(int argc, char *argv[]) {
 
     debug("Listening on port: %s", port);
 
-    signal(SIGCHLD, SIG_IGN);
-
     /* Process incoming connections */
     while (1) {
         /* Accept an incoming connection */
@@ -141,22 +139,10 @@ int main(int argc, char *argv[]) {
         if (!client_file)
             continue;
     
-        pid_t pid = fork();
-        if (pid < 0) {
-            debug("fork failed %s", strerror(errno));
-            fclose(client_file);
-            continue;
-        }
-
-        if (pid == 0) { // Child
-            /* Handle client request */
-            debug("Handling client request");
-            handle_request(client_file);
-            fclose(client_file);
-            exit(EXIT_SUCCESS);
-        } else {        // Parent
-            fclose(client_file);
-        }
+        /* Handle client request */
+        debug("Handling client request");
+        handle_request(client_file);
+        fclose(client_file);
     }
 
     return EXIT_SUCCESS;
