@@ -1,4 +1,4 @@
-/* http_server.c: simple HTTP server */
+/* spidey.c: Forking HTTP server */
 
 #include <errno.h>
 #include <stdbool.h>
