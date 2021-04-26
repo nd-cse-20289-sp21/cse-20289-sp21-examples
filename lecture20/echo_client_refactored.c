@@ -1,4 +1,4 @@
-/* echo_client.c: simple TCP echo client */
+/* echo_client_refactored.c: simple TCP echo client (refactored) */
 
 #include <errno.h>
 #include <stdio.h>

@@ -1,4 +1,4 @@
-/* echo_client.c: simple TCP echo client */
+/* http_client.c: simple HTTP client */
 
 #include <errno.h>
 #include <stdio.h>
